@@ -1,0 +1,53 @@
+version: "3"
+
+networks:
+  tmtask:
+
+services:
+  nginx:
+    image: nginx:stable-alpine
+    container_name: tmtask-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./../:/var/www/html
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+      - db
+    networks:
+      - tmtask
+
+  db:
+    image: docker.io/bitnami/postgresql:11
+    restart: unless-stopped
+    ports: 
+      - "5432:5432"
+    environment:
+      - POSTGRESQL_POSTGRES_PASSWORD=secret
+      - POSTGRESQL_USERNAME=tmt
+      - POSTGRESQL_PASSWORD=password123
+      - POSTGRESQL_DATABASE=tmtask
+    networks: 
+      - tmtask  
+
+  php:
+    image: dockerhub.cwd.at/docker/php/fpm:7.4.4
+    working_dir: /var/www/html
+    user: "1000:1000"
+    container_name: tmtask-php
+    restart: unless-stopped
+    volumes:
+      - ./../:/var/www/html
+    networks:
+      - tmtask
+
+  phppgadmin:
+    image: docker.io/bitnami/phppgadmin:7
+    ports:
+      - '8080:8080'
+    depends_on:
+      - db
+    networks: 
+      - tmtask
