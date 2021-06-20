@@ -1,0 +1,17 @@
+{
+  "name": "slave2anubis/tmtask",
+  "description": "Basic app for PHP developer interview.",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Dacian Bujor",
+      "email": "bdacian18@gmail.com",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/"
+    }
+  }
+}
