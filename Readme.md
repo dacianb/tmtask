@@ -1,7 +1,7 @@
 # TM Task
-This repository contains a basic PHP demo application that recursevly reads a predefined local directory for .xml files containing book information and inserts them into a Postgres database. The database records are shown by accesing http://localhost after runnig the `docker-compose up` from the Docker folder. 
+This repository contains a basic PHP demo application that recursively reads a predefined local directory for .xml files containing book information and inserts them into a Postgres database. The database records are shown by accesing http://localhost after runnig the `docker-compose up` from the Docker folder. 
 
-## Prerequsite
+## Prerequisite
 
 Please visit this URL and follow the steps to install Docker and docker-compose before you try to run the stack.
 https://docs.docker.com/compose/install/
